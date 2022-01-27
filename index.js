@@ -12,6 +12,7 @@ require("./database/init")
 
 app.use("/user", require("./router/user"))
 app.use("/repairman", require("./router/repairman"))
+app.use("/admin", require("./router/admin"))
 
 
 
