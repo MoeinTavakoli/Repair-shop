@@ -1,0 +1,25 @@
+{
+  "name": "repair-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MoeinTavakoli/repair-project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MoeinTavakoli/repair-project/issues"
+  },
+  "homepage": "https://github.com/MoeinTavakoli/repair-project#readme",
+  "dependencies": {
+    "body-parser": "^1.19.1",
+    "express": "^4.17.2",
+    "pg": "^8.7.1",
+    "sequelize": "^6.14.0"
+  }
+}
