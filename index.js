@@ -9,10 +9,9 @@ app.use(bodyParser.json())
 
 require("./database/init")
 
-const userModel = require("./model/user")
-const { verifyToken, generateToken } = require("./utils/jwt")
 
-app.use("/user" , require("./router/user"))
+app.use("/user", require("./router/user"))
+app.use("/repairman", require("./router/repairman"))
 
 
 
