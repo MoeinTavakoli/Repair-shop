@@ -1,28 +1,18 @@
-const express = require("express")
-const app = express()
+const userModel = require("../model/user")
+const { generateToken } = require("../utils/jwt")
 
-const bodyParser = require("body-parser")
-
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
-
-
-require("./database/init")
-const userModel = require("./model/user")
-const { verifyToken, generateToken } = require("./utils/jwt")
-
-app.post("/user/signup", async (req, res) => {
+async function signup(req, res) {
     try {
         const { name, username, password } = req.body
-        const result = await userModel.create(req.body)
+        const result = await userModel.create({ name, username, password })
         res.send(result)
     } catch (error) {
-        res.send(error.errors[0].message || error)
+        res.status(400).send(error.errors[0].message || error)
     }
-})
+}
 
 
-app.post("/user/login", async (req, res) => {
+async function login(req, res) {
     try {
         const { username, password } = req.body
         const userinformation = await userModel.findOne({
@@ -40,14 +30,12 @@ app.post("/user/login", async (req, res) => {
     } catch (error) {
         return res.status(401).send(error)
     }
-})
+}
 
 
 
 
-
-
-
-app.listen(port = process.env.PORT || 3000, () => {
-    console.log(`server runing on : http://localhost:${port}`)
-})
+module.exports = {
+    signup,
+    login
+}
