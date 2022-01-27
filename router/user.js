@@ -1,11 +1,16 @@
 const express = require("express")
 const app = express()
 
-const controller = require("../controller/user")
+// middleware 
+const verifyToken = require("../middleware/verifyToken")
 
+// controller
+const controller = require("../controller/user")
+const { addRequest } = require("../controller/request")
 
 app.post("/signup", controller.signup)
 app.post("/login", controller.login)
+app.post("/request", verifyToken, addRequest)
 
 
 module.exports = app
