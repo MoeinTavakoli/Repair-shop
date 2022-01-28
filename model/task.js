@@ -35,6 +35,10 @@ const taskModel = sequelize.define('task', {
         type: DataTypes.INTEGER,
         defaultValue: 0
     },
+    isFinished: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
+    },
 
     createdAt: {
         type: DataTypes.DATE
