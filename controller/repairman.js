@@ -1,5 +1,4 @@
 const repairmanModel = require("../model/repairman")
-const { generateToken } = require("../utils/jwt")
 
 async function signup(req, res) {
     try {
@@ -35,7 +34,28 @@ async function login(req, res) {
 
 
 
+async function getAllTasksByRepairman(req, res) {
+    try {
+        const { repairman_id } = req.params
+        const repairman_id_byToken = req.id
+        console.log(repairman_id_byToken);
+        if (repairman_id != repairman_id_byToken) {
+            return res.send("permisson denied")
+        }
+        const tasks = await taskModel.findAll({
+            where:
+            {
+                repairman_id
+            }
+        })
+        res.send(tasks)
+    } catch (error) {
+        res.send(error)
+    }
+}
+
 module.exports = {
     signup,
-    login
+    login,
+    getAllTasksByRepairman
 }
