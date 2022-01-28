@@ -20,8 +20,9 @@ async function login(req, res) {
                 username, password
             }
         })
+        console.log(userinformation);
         if (userinformation) {
-            const token = `token : ${generateToken(userinformation.dataValues.User_id)}`
+            const token = `token : ${generateToken(userinformation.dataValues.admin_id)}`
             return res.send(token)
         }
         else {
