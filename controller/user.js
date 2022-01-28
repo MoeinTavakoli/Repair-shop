@@ -1,4 +1,6 @@
 const userModel = require("../model/user")
+const taskModel = require("../model/task")
+
 const { generateToken } = require("../utils/jwt")
 
 async function signup(req, res) {
@@ -34,8 +36,27 @@ async function login(req, res) {
 
 
 
+async function getFactor(req, res) {
+    try {
+        const user_id = req.id
+        const factors = await taskModel.findAll({
+            where: {
+                user_id
+            },
+            attributes: ["task_id", "subject", "message", "cost"]
+        })
+
+        res.send(factors)
+    } catch (error) {
+        res.send(error)
+    }
+}
+
+
 
 module.exports = {
     signup,
-    login
+    login,
+    getFactor
+
 }
